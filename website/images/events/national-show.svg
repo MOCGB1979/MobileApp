@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="MOCGB national show logo">
+  <rect width="120" height="120" rx="16" fill="#f1f2ef"/><rect x="2" y="2" width="116" height="116" rx="14" fill="none" stroke="#1b2a4e" stroke-width="4"/>
+  <rect x="34" y="22" width="12" height="18" rx="1" fill="#1b2a4e" opacity=".85"/><rect x="54" y="22" width="12" height="18" rx="1" fill="#1b2a4e" opacity=".85"/><rect x="74" y="22" width="12" height="18" rx="1" fill="#1b2a4e" opacity=".85"/>
+  <text x="60" y="88" text-anchor="middle" font-family="Arial Narrow, Arial, sans-serif" font-weight="700" font-size="40" fill="#1b2a4e">NAT</text>
+</svg>

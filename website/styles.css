@@ -1,0 +1,415 @@
+/* Mobile-first: base styles are for phones; min-width queries add tablet (48rem) and desktop (64rem) layouts.
+   Palette taken from the 1965 Shelby GT350: Wimbledon White with Guardsman Blue stripes. */
+:root {
+  --white: #f1f2ef;        /* Wimbledon White */
+  --paper: #fafaf8;
+  --blue: #1b2a4e;         /* Guardsman Blue */
+  --ink: #161b2c;
+  --red: #b3121b;          /* Candyapple Red */
+  --chrome: #5f687c;
+  --rule: #d6d9df;
+
+  --font: "Archivo", system-ui, sans-serif;
+  --narrow: 62;
+  --measure: 34rem;
+  --gutter: max(1rem, env(safe-area-inset-left), env(safe-area-inset-right));
+  --max: 72rem;
+  --tap: 2.75rem;          /* minimum touch target */
+
+  color-scheme: light;
+}
+
+@media (min-width: 48rem) {
+  :root { --gutter: max(2rem, env(safe-area-inset-left), env(safe-area-inset-right)); }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 7rem;   /* keep anchored headings clear of the sticky header */
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+@media (min-width: 48rem) {
+  html { scroll-padding-top: 5rem; }
+}
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.display {
+  font-variation-settings: "wdth" var(--narrow);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+/* ---------- Tail-light mark ---------- */
+
+.lights {
+  display: inline-flex;
+  gap: 3px;
+  height: 1.1em;
+  vertical-align: -0.15em;
+}
+.lights span {
+  width: 0.32em;
+  background: var(--red);
+  border-radius: 1px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lights--sequence span { animation: light 0.9s ease-out both; }
+  .lights--sequence span:nth-child(1) { animation-delay: 0.3s; }
+  .lights--sequence span:nth-child(2) { animation-delay: 0.5s; }
+  .lights--sequence span:nth-child(3) { animation-delay: 0.7s; }
+}
+
+@keyframes light {
+  from { background: #4a1518; }
+  40%  { background: #ff2a2f; box-shadow: 0 0 0.6em #ff2a2f; }
+  to   { background: var(--red); box-shadow: none; }
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  padding-top: env(safe-area-inset-top);
+}
+.site-header .wrap {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 1rem;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 3.5rem;
+  font-weight: 800;
+  font-size: 1.35rem;
+  font-variation-settings: "wdth" var(--narrow);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--blue);
+}
+.members {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 0.9rem;
+  border: 2px solid var(--blue);
+  border-radius: 3px;
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+.site-header .members { grid-row: 1; grid-column: -2; }
+.members:active,
+.members:hover { background: var(--blue); color: var(--paper); }
+
+/* Phones: section links sit on their own row under the brand, spread to equal-width tap targets */
+.nav {
+  grid-column: 1 / -1;
+  display: flex;
+  margin-inline: calc(var(--gutter) * -1);
+  border-top: 1px solid var(--rule);
+}
+.nav a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--blue);
+}
+.nav a + a { border-left: 1px solid var(--rule); }
+.nav a:active { background: var(--white); }
+
+@media (min-width: 48rem) {
+  .site-header .wrap { grid-template-columns: auto 1fr auto; }
+  .nav {
+    grid-column: auto;
+    grid-row: 1;
+    grid-column-start: 2;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin: 0 0.5rem 0 0;
+    border: 0;
+  }
+  .nav a { flex: none; padding-inline: 0.75rem; font-weight: 400; color: var(--ink); }
+  .nav a + a { border: 0; }
+  .nav a:hover { text-decoration: underline; text-underline-offset: 0.25em; }
+}
+
+/* ---------- Hero ---------- */
+
+/* Le Mans stripes: two broad bands with a narrow gap, the way they run over a GT350's bonnet */
+.hero {
+  --stripe: 1.1rem;
+  --stripe-gap: 0.35rem;
+  --stripe-edge: var(--gutter);
+  position: relative;
+  overflow: hidden;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--stripe);
+  background: var(--blue);
+}
+.hero::after  { right: var(--stripe-edge); }
+.hero::before { right: calc(var(--stripe-edge) + var(--stripe) + var(--stripe-gap)); }
+
+.hero .wrap {
+  position: relative;
+  z-index: 1;
+  /* leave a lane for the stripes on the right */
+  padding-right: calc(var(--stripe-edge) + var(--stripe) * 2 + var(--stripe-gap) + 1.25rem);
+  padding-block: 2.5rem 2.75rem;
+}
+.hero h1 {
+  font-size: clamp(3rem, 15vw, 9.5rem);
+  color: var(--blue);
+}
+.hero h1 .lights { display: flex; font-size: 0.5em; height: 0.9em; margin-bottom: 0.3em; }
+.hero p {
+  max-width: var(--measure);
+  margin: 1.5rem 0 0;
+  font-size: 1.125rem;
+}
+
+@media (min-width: 48rem) {
+  .hero { --stripe: 4.5rem; --stripe-gap: 0.9rem; --stripe-edge: 4rem; }
+  .hero .wrap { padding-block: 5rem 4.5rem; }
+  .hero h1 { font-size: clamp(5rem, 12vw, 9.5rem); max-width: 9ch; }
+  .hero p { font-size: 1.2rem; margin-top: 2rem; }
+}
+@media (min-width: 64rem) {
+  .hero { --stripe: 7rem; --stripe-gap: 1.25rem; --stripe-edge: 10vw; }
+  .hero .wrap { padding-block: 7rem 6rem; padding-right: var(--gutter); }
+}
+
+/* ---------- Buttons ---------- */
+
+.actions {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: 3px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  background: var(--red);
+  color: #fff;
+}
+.button:hover,
+.button:active { background: #8f0e15; }
+.button--quiet {
+  background: transparent;
+  color: var(--blue);
+  box-shadow: inset 0 0 0 2px var(--blue);
+}
+.button--quiet:hover,
+.button--quiet:active { background: var(--blue); color: var(--paper); }
+
+@media (min-width: 30rem) {
+  .actions { display: flex; flex-wrap: wrap; }
+}
+
+/* ---------- Sections ---------- */
+
+.section { padding-block: 3rem; }
+.section h2 {
+  font-size: clamp(2.25rem, 9vw, 4rem);
+  color: var(--blue);
+  margin-bottom: 1rem;
+}
+.section p { max-width: var(--measure); }
+
+@media (min-width: 48rem) {
+  .section { padding-block: 5rem; }
+}
+
+.about {
+  display: grid;
+  gap: 1.5rem 4rem;
+}
+@media (min-width: 48rem) {
+  .about { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+.about ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 2px solid var(--blue);
+}
+.about li {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.about li strong { display: block; color: var(--blue); }
+
+/* ---------- Generations timeline ---------- */
+
+.generations { background: var(--blue); color: var(--white); }
+.generations h2 { color: var(--white); }
+.generations .intro { color: #c5cbd8; }
+
+.timeline {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+  border-top: 1px solid #3b4a70;
+}
+.timeline li {
+  padding: 1rem 0 1.1rem;
+  border-bottom: 1px solid #3b4a70;
+}
+.timeline .years {
+  display: block;
+  font-variation-settings: "wdth" var(--narrow);
+  font-weight: 800;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: #fff;
+}
+.timeline .name { display: block; margin-top: 0.4rem; font-weight: 600; }
+.timeline .note { display: block; margin-top: 0.25rem; font-size: 0.9rem; color: #aab3c7; }
+.timeline .uk .years { color: #ff6b70; }
+
+@media (min-width: 48rem) {
+  .timeline { grid-template-columns: repeat(4, 1fr); column-gap: 1.25rem; }
+}
+@media (min-width: 64rem) {
+  .timeline { grid-template-columns: repeat(7, 1fr); }
+  .timeline .years { font-size: 1.9rem; }
+}
+
+/* ---------- Events ---------- */
+
+.events {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  max-width: 48rem;
+  border-top: 2px solid var(--blue);
+}
+.event {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.event img { display: block; width: 3.5rem; height: 3.5rem; grid-row: span 2; }
+.event h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.25;
+  color: var(--blue);
+}
+.event-location { margin: 0.15rem 0 0; color: var(--chrome); }
+.event time {
+  grid-column: 2;
+  font-variation-settings: "wdth" var(--narrow);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+@media (min-width: 48rem) {
+  .event { grid-template-columns: 4rem 1fr auto; column-gap: 1.25rem; }
+  .event img { width: 4rem; height: 4rem; grid-row: auto; }
+  .event h3 { font-size: 1.15rem; }
+  .event time { grid-column: auto; font-size: 1.35rem; text-align: right; white-space: nowrap; }
+}
+
+.empty {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border: 2px dashed var(--rule);
+  border-radius: 3px;
+  max-width: 40rem;
+  background: var(--paper);
+}
+.empty p { margin: 0 0 1rem; }
+
+.join { background: var(--paper); border-top: 1px solid var(--rule); }
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  padding-block: 2rem calc(2rem + env(safe-area-inset-bottom));
+  font-size: 0.9rem;
+  color: var(--chrome);
+}
+.site-footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+.site-footer p { margin: 0; }
+
+/* ---------- Simple page (members) ---------- */
+
+.page {
+  min-height: 60vh;
+  padding-block: 3rem;
+}
+.page h1 { font-size: clamp(3rem, 14vw, 6rem); color: var(--blue); margin-bottom: 1.25rem; }
+.page p { max-width: var(--measure); }
+
+@media (min-width: 48rem) {
+  .page { padding-block: 6rem; }
+}

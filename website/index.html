@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fafaf8">
+  <title>Mustang Owners Club Great Britain</title>
+  <meta name="description" content="The club for Ford Mustang owners and enthusiasts across Great Britain. Every generation welcome, from 1964 to today.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="MOCGB home">
+        <span class="lights" aria-hidden="true"><span></span><span></span><span></span></span>
+        MOCGB
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="#generations">Generations</a>
+        <a href="#events">Events</a>
+        <a href="#join">Join</a>
+      </nav>
+      <a class="members" href="members.html">Members' area</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1 class="display">
+          <span class="lights lights--sequence" aria-hidden="true"><span></span><span></span><span></span></span>
+          Mustang Owners Club Great Britain
+        </h1>
+        <p>The club for Ford Mustang owners and enthusiasts across Great Britain. Shows, drives and good company, whichever Mustang is in your garage.</p>
+        <div class="actions">
+          <a class="button" href="#join">Join the club</a>
+          <a class="button button--quiet" href="#events">See upcoming events</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap about">
+        <div>
+          <h2 class="display">Built by owners, for owners</h2>
+          <!-- POC copy: replace with the club's own words -->
+          <p>Whether you've restored a '66 coupe, imported a Fox body or picked up a new S650 from a UK dealer, you'll find people here who know the car as well as you do.</p>
+        </div>
+        <ul>
+          <li><strong>Meets and shows</strong>Regional get-togethers and national shows through the year.</li>
+          <li><strong>Advice from people who've done it</strong>Parts, imports, registration and insurance questions answered by members.</li>
+          <li><strong>A members' area</strong>Member-only news, documents and listings, coming soon.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section generations" id="generations">
+      <div class="wrap">
+        <h2 class="display">Every generation welcome</h2>
+        <p class="intro">Six decades of Mustang, from the first pony car to the one in showrooms today.</p>
+        <ol class="timeline">
+          <li><span class="years">1964–73</span><span class="name">First generation</span><span class="note">The original pony car</span></li>
+          <li><span class="years">1974–78</span><span class="name">Mustang II</span><span class="note">Second generation</span></li>
+          <li><span class="years">1979–93</span><span class="name">Fox body</span><span class="note">Third generation</span></li>
+          <li><span class="years">1994–2004</span><span class="name">SN95</span><span class="note">Fourth generation, New Edge from '99</span></li>
+          <li><span class="years">2005–14</span><span class="name">S197</span><span class="note">Fifth generation</span></li>
+          <li class="uk"><span class="years">2015–23</span><span class="name">S550</span><span class="note">The first built in right-hand drive for UK showrooms</span></li>
+          <li><span class="years">2024–</span><span class="name">S650</span><span class="note">Seventh generation</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="events">
+      <div class="wrap">
+        <h2 class="display">Upcoming events</h2>
+        <p>Sample events for the preview. Real club meets, shows and drives will be listed here.</p>
+        <ol class="events" id="event-list" hidden></ol>
+        <div class="empty" id="events-empty" hidden>
+          <p>No events are scheduled right now. Club meets, shows and drives will be listed here.</p>
+          <a class="button button--quiet" href="#join">Join to hear about events first</a>
+        </div>
+        <noscript><p>Turn on JavaScript to see upcoming events.</p></noscript>
+      </div>
+    </section>
+
+    <section class="section join" id="join">
+      <div class="wrap">
+        <h2 class="display">Join the club</h2>
+        <!-- POC: membership sign-up arrives with the members' area backend -->
+        <p>Online membership sign-up is on its way. Once it's ready you'll be able to join, renew and log in to the members' area here.</p>
+        <div class="actions">
+          <a class="button" href="members.html">Go to the members' area</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Mustang Owners Club Great Britain</p>
+      <p>Not affiliated with Ford Motor Company.</p>
+    </div>
+  </footer>
+  <script src="events.js" defer></script>
+</body>
+</html>

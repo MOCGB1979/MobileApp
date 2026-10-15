@@ -1,0 +1,17 @@
+{
+  "name": "mocgb",
+  "private": true,
+  "description": "Mustang Owners Club of Great Britain website",
+  "scripts": {
+    "start": "python3 -m http.server 8765 --directory website",
+    "check": "wrangler deploy --dry-run"
+  },
+  "devDependencies": {
+    "wrangler": "^4.151.0"
+  },
+  "allowScripts": {
+    "esbuild": false,
+    "workerd": false,
+    "fsevents": false
+  }
+}

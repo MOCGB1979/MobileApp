@@ -10,20 +10,12 @@
 
 ## Cloudflare
 
-Hosted as a Cloudflare Worker (`mocgb`) serving static assets from `website/`, configured in `wrangler.jsonc`, with Workers Builds connected to this repo.
-
-**For now the Worker's production branch is `dev`**, so every push to `dev` deploys to https://mocgb.helloshep.com (and https://mocgb.ms77.workers.dev).
-
-When we're ready to go live from `prod`:
-
-1. Merge `dev` → `prod`
-2. In the dashboard (mocgb > Settings > Build > Branch control) set the production branch to `prod` and turn on builds for non-production branches
-3. `dev` then previews at https://dev-mocgb.ms77.workers.dev
+Served by the `mocgb` Cloudflare Worker: `prod` is production at https://mocgb.helloshep.com, and `dev` gets a Preview. Release with `git push origin dev:prod`. See [docs/deploying.md](docs/deploying.md).
 
 ## Running the website locally
 
 ```sh
-cd website && python3 -m http.server 8765
+npm start
 ```
 
 Then open http://localhost:8765.

@@ -1,15 +1,19 @@
-// Cloudflare Workers config. Static site for now; the members' backend will add a "main" script here later.
-// For now the Worker's production branch is `dev`, so https://mocgb.helloshep.com shows dev.
-// When we go live, switch the production branch to `prod` in the dashboard (Settings > Build > Branch control).
+// Cloudflare Workers config: the site in website/ is served as static assets, with no Worker code yet
+// (the members' backend will add a "main" script later).
+// Production deploys from the prod branch and the dev branch gets its own Preview; see docs/deploying.md.
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "mocgb",
   "compatibility_date": "2026-10-01",
+  // Serve on <name>.<subdomain>.workers.dev, and give each uploaded version its own address too.
+  "workers_dev": true,
+  "preview_urls": true,
   "assets": {
     "directory": "./website"
   },
   "routes": [
     { "pattern": "mocgb.helloshep.com", "custom_domain": true }
   ],
-  "preview_urls": true
+  // Lets `wrangler preview` build the dev branch's Preview. Empty: it uses the settings above.
+  "previews": {}
 }

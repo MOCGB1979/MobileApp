@@ -10,7 +10,7 @@
 
 ## Cloudflare
 
-Served by the `mocgb` Cloudflare Worker: `prod` is production at https://mocgb.helloshep.com, and `dev` gets a Preview. Release with `git push origin dev:prod`. See [docs/deploying.md](docs/deploying.md).
+Served by the `mocgb` Cloudflare Worker: `prod` is production at https://mocgb.helloshep.com, and `dev` gets a Preview at https://dev.mocgb.helloshep.com. Release with `git push origin dev:prod`. See [docs/deploying.md](docs/deploying.md).
 
 ## Running the website locally
 

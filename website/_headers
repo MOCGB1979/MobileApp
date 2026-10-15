@@ -1,3 +1,7 @@
 # The service worker must never be cached by the browser, or phones miss new deploys.
 /sw.js
   Cache-Control: no-cache
+
+# Custom-domain Previews don't get noindex automatically (workers.dev ones do), so keep dev out of search engines
+https://dev.mocgb.helloshep.com/*
+  X-Robots-Tag: noindex

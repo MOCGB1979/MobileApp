@@ -5,7 +5,7 @@ The MOCGB website is a static site served by a Cloudflare Worker with static ass
 | Branch | What it is | Address |
 |---|---|---|
 | `prod` | The live site | https://mocgb.helloshep.com (and `mocgb.ms77.workers.dev`) |
-| `dev` | Day-to-day work, for testing on real phones | The `dev` Preview, on a `workers.dev` address shown in the Worker's **Previews** tab |
+| `dev` | Day-to-day work, for testing on real phones | https://dev.mocgb.helloshep.com (and `dev-mocgb.ms77.workers.dev`), the `dev` Preview |
 
 Work happens on `dev`. When it's ready, release it by moving `prod` up to `dev`:
 
@@ -27,7 +27,7 @@ The `mocgb` Worker already exists and is connected to `Sheppio/mocgb`. In the da
 - **Deploy command:** `npx wrangler deploy` (the default)
 - **Builds for non-production branches:** on, with the preview command `npx wrangler preview` (the default). A push to `dev` then creates or updates the `dev` Preview, whose address stays the same and always shows the latest `dev`.
 
-The custom domain `mocgb.helloshep.com` is set in `wrangler.jsonc` under `routes`, so production deploys keep it attached. Custom domains only point at production; the Preview is reached on its `workers.dev` address.
+The custom domain `mocgb.helloshep.com` is set in `wrangler.jsonc` under `routes`, with `previews_enabled: true`, so it serves production and each Preview gets `<preview-name>.mocgb.helloshep.com`. Cloudflare creates the `*.mocgb.helloshep.com` DNS record and certificate itself. Manage the domain only through `wrangler.jsonc`: every production deploy applies that route, so a change made in the dashboard is undone by the next release. Custom-domain Previews don't get `X-Robots-Tag: noindex` automatically, so `website/_headers` adds it for `dev.mocgb.helloshep.com`.
 
 Previews need Wrangler 4.135.0 or later, which is installed as a dev dependency so the build uses the same version.
 

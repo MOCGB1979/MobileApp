@@ -5,16 +5,20 @@
 
 ## Branches
 
-- `dev` — day-to-day development (default branch). Every push builds a preview at https://dev-mocgb.ms77.workers.dev
-- `prod` — production; merge `dev` → `prod` when ready to release. Deploys to https://mocgb.helloshep.com (and https://mocgb.ms77.workers.dev)
+- `dev` — day-to-day development (default branch)
+- `prod` — production; merge `dev` → `prod` when ready to release
 
 ## Cloudflare
 
-Hosted as a Cloudflare Worker (`mocgb`) serving static assets from `website/`, configured in `wrangler.jsonc`.
-Workers Builds is connected to this repo:
+Hosted as a Cloudflare Worker (`mocgb`) serving static assets from `website/`, configured in `wrangler.jsonc`, with Workers Builds connected to this repo.
 
-- Production branch: `prod` (runs `npx wrangler deploy`)
-- Non-production branch builds: on, so `dev` runs `npx wrangler versions upload` and gets the `dev-` preview alias
+**For now the Worker's production branch is `dev`**, so every push to `dev` deploys to https://mocgb.helloshep.com (and https://mocgb.ms77.workers.dev).
+
+When we're ready to go live from `prod`:
+
+1. Merge `dev` → `prod`
+2. In the dashboard (mocgb > Settings > Build > Branch control) set the production branch to `prod` and turn on builds for non-production branches
+3. `dev` then previews at https://dev-mocgb.ms77.workers.dev
 
 ## Running the website locally
 

@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fafaf8">
+  <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
   <title>Mustang Owners Club of Great Britain</title>
   <meta name="description" content="Find the next MOCGB event and your nearest area meeting, contact the club, and get to the forum, FAQs and social pages.">
   <!-- Link previews (WhatsApp, iMessage, Facebook, Slack): read by crawlers that don't run JavaScript,
@@ -148,10 +149,16 @@
     <div class="wrap">
       <p>Mustang Owners Club of Great Britain. Not affiliated with Ford Motor Company.</p>
       <p class="footer-links"><a href="https://www.mocgb.net">mocgb.net</a> <a href="members.html">Members' area</a></p>
+      <div class="theme-switch" role="group" aria-label="Colour theme">
+        <button type="button" data-theme-choice="system" aria-pressed="true">System</button>
+        <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+        <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+      </div>
     </div>
   </footer>
 
   <script src="app.js" defer></script>
+  <script src="theme.js" defer></script>
   <script src="pwa.js" defer></script>
 </body>
 </html>

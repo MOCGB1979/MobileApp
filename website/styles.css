@@ -1,13 +1,27 @@
 /* Mobile-first: base styles are for phones; min-width queries add tablet (48rem) and desktop (64rem) layouts.
    Palette taken from the 1965 Shelby GT350: Wimbledon White with Guardsman Blue stripes. */
+/* Light theme (default). Dark values below; a footer switch can force either via <html data-theme>. */
 :root {
-  --white: #f1f2ef;        /* Wimbledon White */
-  --paper: #fafaf8;
-  --blue: #1b2a4e;         /* Guardsman Blue */
-  --ink: #161b2c;
-  --red: #b3121b;          /* Candyapple Red */
-  --chrome: #5f687c;
+  --white: #f1f2ef;        /* Wimbledon White: page background */
+  --paper: #fafaf8;        /* raised surfaces: header, hero, tinted sections */
+  --blue: #1b2a4e;         /* Guardsman Blue: headings, links, outlines */
+  --ink: #161b2c;          /* body text */
+  --red: #b3121b;          /* Candyapple Red: button fills */
+  --red-hover: #8f0e15;
+  --on-red: #fff;
+  --accent: #b3121b;       /* red text: dates, distances, email addresses */
+  --chrome: #5f687c;       /* secondary text */
   --rule: #d6d9df;
+  --stripe-colour: #1b2a4e; /* hero racing stripes */
+  --band: #1b2a4e;         /* the blue "Join" section */
+  --band-heading: #fff;
+  --band-text: #c5cbd8;
+  --band-muted: #aab3c7;
+  --band-rule: #3b4a70;
+  --light-button-hover: #fff;
+  --field: #fff;
+  --placeholder: #8b93a3;
+  --thumb: #fff;           /* behind event logos, which are mostly drawn on white */
 
   --font: "Archivo", system-ui, sans-serif;
   --narrow: 62;
@@ -17,6 +31,45 @@
   --tap: 2.75rem;          /* minimum touch target */
 
   color-scheme: light;
+}
+
+/* Dark theme: night-time Guardsman Blue. Applied when the device asks for dark (unless the
+   visitor chose Light), or when the visitor chose Dark. Keep the two blocks identical. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --white: #0f1526;
+    --paper: #161e33;
+    --blue: #b8c8ec;
+    --ink: #e6e9f0;
+    --red: #c8202a;
+    --red-hover: #a8141d;
+    --accent: #ff7a7f;
+    --chrome: #9ba4b8;
+    --rule: #2a3552;
+    --stripe-colour: #34508f;
+    --band: #1b2a4e;
+    --light-button-hover: #1f2943;
+    --field: #0f1526;
+    --placeholder: #6f7891;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --white: #0f1526;
+  --paper: #161e33;
+  --blue: #b8c8ec;
+  --ink: #e6e9f0;
+  --red: #c8202a;
+  --red-hover: #a8141d;
+  --accent: #ff7a7f;
+  --chrome: #9ba4b8;
+  --rule: #2a3552;
+  --stripe-colour: #34508f;
+  --band: #1b2a4e;
+  --light-button-hover: #1f2943;
+  --field: #0f1526;
+  --placeholder: #6f7891;
+  color-scheme: dark;
 }
 
 @media (min-width: 48rem) {
@@ -131,11 +184,11 @@ a { color: inherit; }
   padding: 0 1.1rem;
   border-radius: 3px;
   background: var(--red);
-  color: #fff;
+  color: var(--on-red);
   font-weight: 700;
   text-decoration: none;
 }
-.header-button:hover, .header-button:active { background: #8f0e15; }
+.header-button:hover, .header-button:active { background: var(--red-hover); }
 .header-button--quiet { background: transparent; color: var(--blue); box-shadow: inset 0 0 0 2px var(--blue); }
 .header-button--quiet:hover, .header-button--quiet:active { background: var(--blue); color: var(--paper); }
 
@@ -194,7 +247,7 @@ a { color: inherit; }
   top: 0;
   bottom: 0;
   width: var(--stripe);
-  background: var(--blue);
+  background: var(--stripe-colour);
 }
 .hero::after  { right: var(--stripe-edge); }
 .hero::before { right: calc(var(--stripe-edge) + var(--stripe) + var(--stripe-gap)); }
@@ -247,10 +300,10 @@ a { color: inherit; }
   text-align: center;
   text-decoration: none;
   background: var(--red);
-  color: #fff;
+  color: var(--on-red);
   cursor: pointer;
 }
-.button:hover, .button:active { background: #8f0e15; }
+.button:hover, .button:active { background: var(--red-hover); }
 .button--quiet {
   background: transparent;
   color: var(--blue);
@@ -258,7 +311,7 @@ a { color: inherit; }
 }
 .button--quiet:hover, .button--quiet:active { background: var(--blue); color: var(--paper); }
 .button--light { background: var(--paper); color: var(--blue); }
-.button--light:hover, .button--light:active { background: #fff; }
+.button--light:hover, .button--light:active { background: var(--light-button-hover); }
 
 @media (min-width: 30rem) {
   .actions { display: flex; flex-wrap: wrap; }
@@ -275,8 +328,8 @@ a { color: inherit; }
 }
 .section p { max-width: var(--measure); }
 .section--tint { background: var(--paper); border-block: 1px solid var(--rule); }
-.section--blue { background: var(--blue); color: var(--white); }
-.section--blue h2 { color: #fff; }
+.section--blue { background: var(--band); color: var(--band-text); }
+.section--blue h2 { color: var(--band-heading); }
 
 @media (min-width: 48rem) {
   .section { padding-block: 4.5rem; }
@@ -287,7 +340,7 @@ a { color: inherit; }
   font-size: 1.1rem;
   color: var(--chrome);
 }
-.section--blue .subhead { color: #aab3c7; }
+.section--blue .subhead { color: var(--band-muted); }
 
 .small { font-size: 0.9rem; color: var(--chrome); }
 .small a { color: var(--blue); }
@@ -319,7 +372,7 @@ a { color: inherit; }
 .event time {
   font-variation-settings: "wdth" var(--narrow);
   font-weight: 800;
-  color: var(--red);
+  color: var(--accent);
 }
 .next-event time { font-size: 1.6rem; line-height: 1; }
 .next-event h3 {
@@ -363,7 +416,7 @@ a { color: inherit; }
   height: 3.5rem;
   object-fit: contain;
   border-radius: 4px;
-  background: #fff;
+  background: var(--thumb);
   box-shadow: inset 0 0 0 1px var(--rule);
 }
 .event h4 { margin: 0; font-size: 1.05rem; line-height: 1.25; }
@@ -396,13 +449,13 @@ a { color: inherit; }
   padding: 0 0.85rem;
   border: 2px solid var(--chrome);
   border-radius: 3px;
-  background: #fff;
+  background: var(--field);
   color: var(--ink);
   font: inherit;
   font-size: 1.0625rem;   /* 16px+ stops iOS zooming on focus */
   text-transform: uppercase;
 }
-.postcode-row input::placeholder { text-transform: none; color: #8b93a3; }
+.postcode-row input::placeholder { text-transform: none; color: var(--placeholder); }
 .postcode-row input:focus-visible { border-color: var(--blue); outline-offset: 1px; }
 .finder-status { margin: 0; min-height: 1.5em; font-weight: 600; color: var(--blue); }
 
@@ -420,7 +473,7 @@ a { color: inherit; }
   font-variation-settings: "wdth" var(--narrow);
   font-weight: 800;
   font-size: 1.15rem;
-  color: var(--red);
+  color: var(--accent);
   white-space: nowrap;
 }
 .area p { margin: 0.2rem 0 0; }
@@ -466,7 +519,7 @@ a { color: inherit; }
 }
 .contacts strong { color: var(--blue); font-size: 1.05rem; }
 .contacts span { color: var(--ink); }
-.contacts .addr { color: var(--red); font-weight: 600; word-break: break-word; }
+.contacts .addr { color: var(--accent); font-weight: 600; word-break: break-word; }
 .contacts a:hover strong,
 .links a:hover strong { text-decoration: underline; text-underline-offset: 0.2em; }
 
@@ -475,12 +528,12 @@ a { color: inherit; }
 }
 
 .join { max-width: 40rem; }
-.section--blue .join p { color: #c5cbd8; }
+.section--blue .join p { color: var(--band-text); }
 
-.links { border-top: 1px solid #3b4a70; }
-.links li { border-bottom: 1px solid #3b4a70; }
-.links strong { font-size: 1.15rem; color: #fff; }
-.links span { color: #c5cbd8; }
+.links { border-top: 1px solid var(--band-rule); }
+.links li { border-bottom: 1px solid var(--band-rule); }
+.links strong { font-size: 1.15rem; color: var(--band-heading); }
+.links span { color: var(--band-text); }
 
 @media (min-width: 48rem) {
   .links { grid-template-columns: repeat(2, 1fr); column-gap: 2.5rem; }
@@ -527,4 +580,25 @@ a { color: inherit; }
   border-left: 3px solid var(--red);
   background: var(--white);
   font-size: 0.95rem;
+}
+
+/* ---------- Theme switch ---------- */
+
+.theme-switch { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.theme-switch button {
+  min-height: var(--tap);
+  padding: 0 0.85rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.theme-switch button[aria-pressed="true"] {
+  border-color: var(--blue);
+  box-shadow: inset 0 0 0 1px var(--blue);
+  color: var(--blue);
+  font-weight: 700;
 }

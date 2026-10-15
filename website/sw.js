@@ -1,11 +1,12 @@
 // Service worker: makes the site installable and keeps the last-seen version available offline.
 // Pages, styles, scripts and data are network-first, so members always get the latest when online.
-const CACHE = "mocgb-v1";
+const CACHE = "mocgb-v2";
 const CORE = [
   "/",
   "/styles.css",
   "/app.js",
   "/pwa.js",
+  "/theme.js",
   "/data/events.json",
   "/data/areas.json",
   "/manifest.webmanifest",

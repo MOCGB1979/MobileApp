@@ -5,8 +5,15 @@
 
 ## Branches
 
-- `dev` — day-to-day development (default branch)
-- `prod` — production; merge `dev` → `prod` when ready to release
+- `dev` — day-to-day development (default branch). Every push deploys to the Cloudflare Pages preview at `https://dev.<project>.pages.dev`
+- `prod` — production; merge `dev` → `prod` when ready to release. Deploys to https://mocgb.helloshep.com
+
+## Cloudflare Pages settings
+
+- Connected to this repo via Git integration (created in the dashboard, not with `wrangler`, which only makes direct-upload projects)
+- Production branch: `prod`, custom domain `mocgb.helloshep.com`
+- Preview branches: custom, include `dev` only
+- Build command: none. Build output directory: `website`
 
 ## Running the website locally
 

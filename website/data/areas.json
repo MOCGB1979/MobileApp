@@ -1,0 +1,225 @@
+{
+  "source": "https://www.mocgb.net/index.php/the-club/monthly-meeting",
+  "checked": "2026-10-15",
+  "areas": [
+    {
+      "name": "Bedfordshire",
+      "contact": "Andy Baker",
+      "email": "bedfordshire@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/MOCGB.Bedfordshire",
+      "venue": "The Cross Keys, 13 High St, Pulloxhill",
+      "postcode": "MK45 5HB",
+      "lat": 51.9954,
+      "lng": -0.4522,
+      "when": "First Sunday, 10am–12pm"
+    },
+    {
+      "name": "Bristol",
+      "contact": "Steve Hiscox",
+      "email": "bristol@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/MOCGB.Bristol",
+      "venue": "White Hart Inn, Iron Acton",
+      "postcode": "BS37 9UG",
+      "lat": 51.5505,
+      "lng": -2.4668,
+      "when": "Second Tuesday, 7:30pm"
+    },
+    {
+      "name": "Buckinghamshire",
+      "contact": "Charles Godefroy",
+      "email": "bucks@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/MOCGB.Bucks",
+      "venue": "The Inn on the Lake, Milton Keynes",
+      "postcode": "MK1 1PA",
+      "lat": 52.0074,
+      "lng": -0.7211,
+      "when": "First Friday, from 7pm"
+    },
+    {
+      "name": "Channel Islands",
+      "contact": "Alex Fearn",
+      "email": "ci@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/mocgb.channelislands",
+      "lat": 49.19,
+      "lng": -2.11,
+      "approx": true
+    },
+    {
+      "name": "Cornwall",
+      "contact": "Mike Fisher",
+      "email": "cornwall@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/MOCGB.Cornwall",
+      "lat": 50.26,
+      "lng": -5.05,
+      "approx": true
+    },
+    {
+      "name": "Devon",
+      "contact": "Phil Rowse",
+      "email": "devon@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/220218530582364",
+      "venue": "Roving meet, details by email",
+      "when": "Second Saturday",
+      "lat": 50.72,
+      "lng": -3.53,
+      "approx": true
+    },
+    {
+      "name": "East Anglia & Cambs",
+      "contact": "Daren Patient",
+      "email": "eastanglia-cambs@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/1356874712979883",
+      "venue": "Starbucks, Hampton, Peterborough",
+      "postcode": "PE7 8FD",
+      "lat": 52.5421,
+      "lng": -0.2553,
+      "when": "First Saturday"
+    },
+    {
+      "name": "East Sussex",
+      "contact": "Chris Hodgson",
+      "email": "eastsussex@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/MOCGB.Eastsussex",
+      "venue": "Blackbrooks Garden Centre, A22, Lower Dicker",
+      "postcode": "BN27 4BJ",
+      "lat": 50.8821,
+      "lng": 0.2145,
+      "when": "Third Sunday, 9:30am (confirm with Chris)"
+    },
+    {
+      "name": "Essex",
+      "contact": "Cameron Prentice",
+      "email": "essex@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/MOCGB.Essex",
+      "venue": "The Kings Head, High Road, North Weald",
+      "postcode": "CM16 6BU",
+      "lat": 51.7143,
+      "lng": 0.1654,
+      "when": "Third Friday, 6:30pm"
+    },
+    {
+      "name": "Hampshire & South Coast",
+      "contact": "John Haylett",
+      "email": "southcoast@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/MOCGB.Hampshire",
+      "venue": "Port Solent car park",
+      "postcode": "PO6 4TP",
+      "lat": 50.8409,
+      "lng": -1.0971,
+      "when": "First Sunday, 10am–12pm"
+    },
+    {
+      "name": "Herts & North London",
+      "contact": "Roy Stapleton",
+      "email": "herts-nlondon@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/MOCGB.Herts.NthLondon",
+      "venue": "The Goat, Hertford Heath",
+      "postcode": "SG13 7RT",
+      "lat": 51.7874,
+      "lng": -0.0444,
+      "when": "Last Tuesday, 6:30pm"
+    },
+    {
+      "name": "Kent",
+      "contact": "Ade Lee",
+      "email": "kent@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/MOCGB.Kent",
+      "venue": "Venue on Facebook or the forum",
+      "when": "Third Saturday, 9:30–10am",
+      "lat": 51.27,
+      "lng": 0.52,
+      "approx": true
+    },
+    {
+      "name": "Lincolnshire, Humberside & East Yorkshire",
+      "contact": "Nigel Stephenson",
+      "email": "lincolnshire@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/MOCGB.Lincolnshire",
+      "venue": "Windmill Farm, Runcorn Road, Lincoln",
+      "postcode": "LN6 3QZ",
+      "lat": 53.2013,
+      "lng": -0.6097,
+      "when": "First Saturday, from 9:30am"
+    },
+    {
+      "name": "Midlands",
+      "contact": "Annmarie Burgoyne",
+      "email": "midlands@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/MOCGB.Midlands",
+      "lat": 52.48,
+      "lng": -1.9,
+      "approx": true
+    },
+    {
+      "name": "Northamptonshire",
+      "contact": "Carl James",
+      "email": "northants@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/MOCGB.Northants",
+      "lat": 52.24,
+      "lng": -0.9,
+      "approx": true
+    },
+    {
+      "name": "Northern Group",
+      "contact": "Elaine Gallacher",
+      "email": "northernukgroup@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/509465729457605",
+      "venue": "Thornton Arms, Burnley",
+      "postcode": "BB10 3JS",
+      "lat": 53.7877,
+      "lng": -2.2076,
+      "when": "Monthly, 11:30am–2:30pm (dates on the meetings page)"
+    },
+    {
+      "name": "Northern Ireland",
+      "contact": "Dave Pearce",
+      "email": "ni@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/mocgb.northernireland",
+      "lat": 54.6,
+      "lng": -5.93,
+      "approx": true
+    },
+    {
+      "name": "Nottinghamshire",
+      "contact": "Annmarie Burgoyne",
+      "email": "nottinghamshire@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/819955522704859",
+      "venue": "Kelham Fox, Kelham, Newark",
+      "postcode": "NG23 5QP",
+      "lat": 53.0935,
+      "lng": -0.8468,
+      "when": "Second Saturday, from 11:30am"
+    },
+    {
+      "name": "Oxon & Berks",
+      "contact": "Janice Carr",
+      "email": "oxford-berks@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/636964112409465",
+      "venue": "Kingsley Cafe, Eynsham",
+      "postcode": "OX29 4EF",
+      "lat": 51.7873,
+      "lng": -1.3783,
+      "when": "First Sunday, 10am–12pm"
+    },
+    {
+      "name": "Suffolk & Norfolk",
+      "contact": "Chris Coe",
+      "email": "suffolk-norfolk@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/mocgb.suffolknorfolk",
+      "lat": 52.4,
+      "lng": 1.1,
+      "approx": true
+    },
+    {
+      "name": "Surrey",
+      "contact": "Kelly Baker",
+      "email": "surrey@mocgb.net",
+      "facebook": "https://www.facebook.com/groups/2510502118960598",
+      "venue": "The Mulberry Inn, Petworth Road, Chiddingfold",
+      "postcode": "GU8 4SS",
+      "lat": 51.0882,
+      "lng": -0.6455,
+      "when": "Third Saturday, 10am–12pm"
+    }
+  ]
+}

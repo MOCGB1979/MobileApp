@@ -14,4 +14,9 @@
 cd website && python3 -m http.server 8765
 ```
 
-Then open http://localhost:8765. Events come from `website/data/events.json` (sample data for now).
+Then open http://localhost:8765.
+
+Content data, copied from https://www.mocgb.net on 2026-10-15:
+
+- `website/data/events.json` — upcoming events (images resized into `website/images/events/`)
+- `website/data/areas.json` — area meetings, with coordinates for the nearest-meeting finder (postcodes geocoded via postcodes.io)

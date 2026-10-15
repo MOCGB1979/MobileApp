@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fafaf8">
-  <title>Mustang Owners Club Great Britain</title>
-  <meta name="description" content="The club for Ford Mustang owners and enthusiasts across Great Britain. Every generation welcome, from 1964 to today.">
+  <title>Mustang Owners Club of Great Britain</title>
+  <meta name="description" content="Find the next MOCGB event and your nearest area meeting, contact the club, and get to the forum, FAQs and social pages.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
@@ -19,11 +19,12 @@
         MOCGB
       </a>
       <nav class="nav" aria-label="Main">
-        <a href="#generations">Generations</a>
         <a href="#events">Events</a>
-        <a href="#join">Join</a>
+        <a href="#meetings">Meetings</a>
+        <a href="#contact">Contact</a>
+        <a href="#links">Links</a>
       </nav>
-      <a class="members" href="members.html">Members' area</a>
+      <a class="header-button" href="#join">Join</a>
     </div>
   </header>
 
@@ -32,78 +33,101 @@
       <div class="wrap">
         <h1 class="display">
           <span class="lights lights--sequence" aria-hidden="true"><span></span><span></span><span></span></span>
-          Mustang Owners Club Great Britain
+          Mustang Owners Club of Great Britain
         </h1>
-        <p>The club for Ford Mustang owners and enthusiasts across Great Britain. Shows, drives and good company, whichever Mustang is in your garage.</p>
-        <div class="actions">
-          <a class="button" href="#join">Join the club</a>
-          <a class="button button--quiet" href="#events">See upcoming events</a>
-        </div>
+        <p>Run by volunteers for more than 2,500 members. Owners and fans of every Mustang, from 1964 to today, are welcome.</p>
       </div>
     </section>
 
-    <section class="section">
-      <div class="wrap about">
-        <div>
-          <h2 class="display">Built by owners, for owners</h2>
-          <!-- POC copy: replace with the club's own words -->
-          <p>Whether you've restored a '66 coupe, imported a Fox body or picked up a new S650 from a UK dealer, you'll find people here who know the car as well as you do.</p>
+    <!-- 1. Next event -->
+    <section class="section" id="events" aria-labelledby="events-title">
+      <div class="wrap">
+        <h2 class="display" id="events-title">Next event</h2>
+        <div id="next-event" class="next-event" aria-live="polite"></div>
+        <h3 class="subhead" id="more-events-title" hidden>Also coming up</h3>
+        <ol class="event-list" id="more-events" aria-labelledby="more-events-title" hidden></ol>
+        <a class="button button--quiet" href="https://www.mocgb.net/index.php/the-club/events">See all events on mocgb.net</a>
+      </div>
+    </section>
+
+    <!-- 2. Nearest area meeting -->
+    <section class="section section--tint" id="meetings" aria-labelledby="meetings-title">
+      <div class="wrap">
+        <h2 class="display" id="meetings-title">Find your nearest meeting</h2>
+        <p>Area groups meet every month across the country. Use your location or enter a postcode to see the closest.</p>
+
+        <div class="finder">
+          <button class="button" type="button" id="use-location">Use my location</button>
+          <form id="postcode-form" class="postcode-form" novalidate>
+            <label for="postcode">Or enter a postcode</label>
+            <div class="postcode-row">
+              <input id="postcode" name="postcode" type="text" inputmode="text" autocomplete="postal-code"
+                     autocapitalize="characters" spellcheck="false" placeholder="e.g. MK45 5HB">
+              <button class="button button--quiet" type="submit">Find</button>
+            </div>
+          </form>
+          <p class="finder-status" id="finder-status" role="status"></p>
         </div>
-        <ul>
-          <li><strong>Meets and shows</strong>Regional get-togethers and national shows through the year.</li>
-          <li><strong>Advice from people who've done it</strong>Parts, imports, registration and insurance questions answered by members.</li>
-          <li><strong>A members' area</strong>Member-only news, documents and listings, coming soon.</li>
+
+        <ol class="area-list" id="nearest-areas" hidden></ol>
+
+        <details class="all-areas">
+          <summary>Browse all areas</summary>
+          <ol class="area-list" id="all-areas"></ol>
+        </details>
+        <p class="small">Meeting details come from the <a href="https://www.mocgb.net/index.php/the-club/monthly-meeting">monthly meetings page on mocgb.net</a>. Check there or with the area contact before you travel.</p>
+      </div>
+    </section>
+
+    <!-- 3. Contact membership services -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 class="display" id="contact-title">Contact the club</h2>
+        <p>Email the right person directly.</p>
+        <ul class="contacts">
+          <li><a href="mailto:membership@mocgb.net"><strong>Membership secretary</strong><span>Joining, renewals and membership cards</span><span class="addr">membership@mocgb.net</span></a></li>
+          <li><a href="mailto:age@mocgb.net"><strong>Age-related plates</strong><span>Dating letters and DVLA registration for imported Mustangs</span><span class="addr">age@mocgb.net</span></a></li>
+          <li><a href="mailto:events@mocgb.net"><strong>Events secretary</strong><span>Shows, club stands and booking</span><span class="addr">events@mocgb.net</span></a></li>
+          <li><a href="mailto:judging@mocgb.net"><strong>Concours secretary</strong><span>Judging at the national show</span><span class="addr">judging@mocgb.net</span></a></li>
+          <li><a href="mailto:editor@mocgb.net"><strong>Magazine editor</strong><span>Stories and photos for the club magazine</span><span class="addr">editor@mocgb.net</span></a></li>
+          <li><a href="mailto:chairman@mocgb.net"><strong>Chairman</strong><span>Club matters</span><span class="addr">chairman@mocgb.net</span></a></li>
+          <li><a href="mailto:info@mocgb.net"><strong>General enquiries</strong><span>Anything else</span><span class="addr">info@mocgb.net</span></a></li>
         </ul>
+        <p class="small">Need a valuation or another committee member? See the <a href="https://www.mocgb.net/index.php/the-club/mocgb-committee">committee page</a>.</p>
       </div>
     </section>
 
-    <section class="section generations" id="generations">
+    <!-- 4. Join, forum, FAQs, social -->
+    <section class="section section--blue" id="links" aria-labelledby="links-title">
       <div class="wrap">
-        <h2 class="display">Every generation welcome</h2>
-        <p class="intro">Six decades of Mustang, from the first pony car to the one in showrooms today.</p>
-        <ol class="timeline">
-          <li><span class="years">1964–73</span><span class="name">First generation</span><span class="note">The original pony car</span></li>
-          <li><span class="years">1974–78</span><span class="name">Mustang II</span><span class="note">Second generation</span></li>
-          <li><span class="years">1979–93</span><span class="name">Fox body</span><span class="note">Third generation</span></li>
-          <li><span class="years">1994–2004</span><span class="name">SN95</span><span class="note">Fourth generation, New Edge from '99</span></li>
-          <li><span class="years">2005–14</span><span class="name">S197</span><span class="note">Fifth generation</span></li>
-          <li class="uk"><span class="years">2015–23</span><span class="name">S550</span><span class="note">The first built in right-hand drive for UK showrooms</span></li>
-          <li><span class="years">2024–</span><span class="name">S650</span><span class="note">Seventh generation</span></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section" id="events">
-      <div class="wrap">
-        <h2 class="display">Upcoming events</h2>
-        <p>Sample events for the preview. Real club meets, shows and drives will be listed here.</p>
-        <ol class="events" id="event-list" hidden></ol>
-        <div class="empty" id="events-empty" hidden>
-          <p>No events are scheduled right now. Club meets, shows and drives will be listed here.</p>
-          <a class="button button--quiet" href="#join">Join to hear about events first</a>
+        <div id="join" class="join">
+          <h2 class="display" id="links-title">Join the club</h2>
+          <p>Full membership or digital membership. Returning members can skip the joining fee.</p>
+          <div class="actions">
+            <a class="button" href="https://www.mocgb.net/index.php/memberships">Join the MOCGB</a>
+            <a class="button button--light" href="https://www.mocgb.net/index.php/memberships/online/sign-up">Digital membership</a>
+          </div>
         </div>
-        <noscript><p>Turn on JavaScript to see upcoming events.</p></noscript>
-      </div>
-    </section>
 
-    <section class="section join" id="join">
-      <div class="wrap">
-        <h2 class="display">Join the club</h2>
-        <!-- POC: membership sign-up arrives with the members' area backend -->
-        <p>Online membership sign-up is on its way. Once it's ready you'll be able to join, renew and log in to the members' area here.</p>
-        <div class="actions">
-          <a class="button" href="members.html">Go to the members' area</a>
-        </div>
+        <h3 class="subhead">Club links</h3>
+        <ul class="links">
+          <li><a href="https://forum.mocgb.net"><strong>Forum</strong><span>Ask questions and talk Mustangs with members</span></a></li>
+          <li><a href="https://www.mocgb.net/index.php/need-help"><strong>FAQs</strong><span>Registering imports, DVLA records and rejoining</span></a></li>
+          <li><a href="https://www.facebook.com/MOCGB"><strong>Facebook</strong><span>The club's main page</span></a></li>
+          <li><a href="https://www.facebook.com/groups/MOCGB.ForSaleWanted"><strong>For Sale &amp; Wanted</strong><span>Buy and sell cars and parts on Facebook</span></a></li>
+          <li><a href="https://www.instagram.com/mustangownersclub_of_gb/"><strong>Instagram</strong><span>@mustangownersclub_of_gb</span></a></li>
+        </ul>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="wrap">
-      <p>Mustang Owners Club Great Britain</p>
-      <p>Not affiliated with Ford Motor Company.</p>
+      <p>Mustang Owners Club of Great Britain. Not affiliated with Ford Motor Company.</p>
+      <p class="footer-links"><a href="https://www.mocgb.net">mocgb.net</a> <a href="members.html">Members' area</a></p>
     </div>
   </footer>
-  <script src="events.js" defer></script>
+
+  <script src="app.js" defer></script>
 </body>
 </html>

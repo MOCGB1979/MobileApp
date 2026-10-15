@@ -11,8 +11,11 @@
   "assets": {
     "directory": "./website"
   },
+  // Production on mocgb.helloshep.com, and each Preview on <preview-name>.mocgb.helloshep.com
+  // (so the dev branch is dev.mocgb.helloshep.com). Keep previews_enabled here: every production
+  // deploy applies this route, and without it the domain would stop serving Previews.
   "routes": [
-    { "pattern": "mocgb.helloshep.com", "custom_domain": true }
+    { "pattern": "mocgb.helloshep.com", "custom_domain": true, "previews_enabled": true }
   ],
   // Lets `wrangler preview` build the dev branch's Preview. Empty: it uses the settings above.
   "previews": {}

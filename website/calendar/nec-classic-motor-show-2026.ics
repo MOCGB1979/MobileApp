@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//MOCGB//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:nec-classic-motor-show-2026@mocgb.helloshep.com
+DTSTAMP:20261015T202411Z
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261116
+SUMMARY:The NEC Classic Motor Show
+LOCATION:NEC\, Birmingham B40 1NT
+DESCRIPTION:Save £4 on adult day tickets booked online with club code CCMO
+ CGBN6.\nDetails: https://www.mocgb.net/index.php/the-club/events
+URL:https://www.mocgb.net/index.php/the-club/events
+END:VEVENT
+END:VCALENDAR

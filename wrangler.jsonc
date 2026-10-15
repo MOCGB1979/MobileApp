@@ -9,7 +9,9 @@
   "workers_dev": true,
   "preview_urls": true,
   "assets": {
-    "directory": "./website"
+    "directory": "./website",
+    // Unknown addresses get website/404.html with a 404 status
+    "not_found_handling": "404-page"
   },
   "routes": [
     { "pattern": "mocgb.helloshep.com", "custom_domain": true }

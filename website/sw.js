@@ -1,7 +1,7 @@
 // Service worker: makes the site installable and keeps the last-seen version available offline.
 // Pages, styles, scripts and data are network-first, so members always get the latest when online.
-// Images show the saved copy straight away and fetch the latest in the background for next time.
-const CACHE = "mocgb-v3";
+// Images and fonts show the saved copy straight away and fetch the latest in the background for next time.
+const CACHE = "mocgb-v4";
 const CORE = [
   "/",
   "/styles.css",
@@ -12,6 +12,7 @@ const CORE = [
   "/data/areas.json",
   "/manifest.webmanifest",
   "/icons/icon-192.png",
+  "/fonts/archivo-latin.woff2",
 ];
 
 self.addEventListener("install", (event) => {
@@ -32,8 +33,8 @@ self.addEventListener("fetch", (event) => {
   // Leave other sites (postcode lookup, fonts, mocgb.net) to the browser
   if (request.method !== "GET" || url.origin !== self.location.origin) return;
 
-  // Images: stale-while-revalidate
-  if (request.destination === "image") {
+  // Images and fonts: stale-while-revalidate
+  if (request.destination === "image" || request.destination === "font") {
     const fresh = fetch(request).then((res) => store(request, res));
     event.waitUntil(fresh.catch(() => {}));
     event.respondWith(caches.match(request).then((hit) => hit || fresh));

@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//MOCGB//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:isle-of-man-festival-2027@mocgb.helloshep.com
+DTSTAMP:20261015T202411Z
+DTSTART;VALUE=DATE:20270916
+DTEND;VALUE=DATE:20270920
+SUMMARY:Isle of Man Festival of Motoring: The Yanks Are Back
+LOCATION:Isle of Man
+DESCRIPTION:Details: https://www.mocgb.net/index.php/the-club/events
+URL:https://www.mocgb.net/index.php/the-club/events
+END:VEVENT
+END:VCALENDAR

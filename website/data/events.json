@@ -3,15 +3,18 @@
   "checked": "2026-10-15",
   "events": [
     {
+      "id": "nec-classic-motor-show-2026",
       "title": "The NEC Classic Motor Show",
       "start": "2026-11-13",
       "end": "2026-11-15",
       "location": "NEC, Birmingham. Club stand in Hall 5, American Village",
       "logo": "images/events/nec-classic-motor-show.jpg",
       "url": "https://www.mocgb.net/index.php/the-club/events",
-      "note": "Save £4 on adult day tickets booked online with club code CCMOCGBN6."
+      "note": "Save £4 on adult day tickets booked online with club code CCMOCGBN6.",
+      "map": "NEC, Birmingham B40 1NT"
     },
     {
+      "id": "mocgb-national-show-2027",
       "title": "MOCGB National Show 2027",
       "start": "2027-05-08",
       "end": "2027-05-09",
@@ -20,6 +23,7 @@
       "url": "https://www.mocgb.net/index.php/the-club/events"
     },
     {
+      "id": "isle-of-man-festival-2027",
       "title": "Isle of Man Festival of Motoring: The Yanks Are Back",
       "start": "2027-09-16",
       "end": "2027-09-19",

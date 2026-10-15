@@ -9,6 +9,42 @@ function el(tag, props = {}, ...children) {
   return node;
 }
 
+// Opens Apple Maps on iPhone/iPad and Google Maps elsewhere, with directions to the place
+const isApple = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+  (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+function mapsUrl(place) {
+  const q = encodeURIComponent(place);
+  return isApple ? `https://maps.apple.com/?daddr=${q}` : `https://www.google.com/maps/dir/?api=1&destination=${q}`;
+}
+
+const checkedFmt = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" });
+function showChecked(id, what, iso) {
+  const node = $(id);
+  if (node && iso) node.textContent = `${what} last checked against mocgb.net on ${checkedFmt.format(new Date(iso + "T12:00:00"))}.`;
+}
+
+/* ---------- Copy email address ---------- */
+
+// Many phones have no mail app set up, so a mailto: link does nothing. Offer to copy the address instead.
+const canCopy = !!navigator.clipboard?.writeText;
+function copyButton(email) {
+  if (!canCopy) return null;
+  const button = el("button", { type: "button", className: "copy-button", textContent: "Copy" });
+  button.setAttribute("aria-label", `Copy ${email}`);
+  button.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      button.textContent = "Copied";
+      button.dataset.copied = "";
+      $("copy-status").textContent = `${email} copied`;
+      setTimeout(() => { button.textContent = "Copy"; delete button.dataset.copied; }, 2500);
+    } catch {
+      $("copy-status").textContent = "Couldn't copy. Press and hold the address to copy it instead.";
+    }
+  });
+  return button;
+}
+
 async function getJSON(url) {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`${url}: ${res.status}`);
@@ -40,7 +76,9 @@ async function loadEvents({ refresh = false } = {}) {
   const today = new Date().toISOString().slice(0, 10);
   let events = [];
   try {
-    events = (await getJSON("data/events.json")).events
+    const data = await getJSON("/data/events.json");
+    showChecked("events-checked", "Event details", data.checked);
+    events = data.events
       .filter((e) => (e.end || e.start) >= today)
       .sort((a, b) => a.start.localeCompare(b.start));
   } catch (err) {
@@ -64,7 +102,11 @@ async function loadEvents({ refresh = false } = {}) {
       el("h3", { textContent: next.title }),
       el("p", { className: "event-location", textContent: next.location }),
       next.note && el("p", { className: "event-note", textContent: next.note }),
-      el("a", { className: "button", href: next.url, textContent: "Event details" })
+      el("div", { className: "event-actions" },
+        el("a", { className: "button", href: next.url, textContent: "Event details" }),
+        el("a", { className: "text-link", href: `/calendar/${next.id}.ics`, textContent: "Add to calendar" }),
+        next.map && el("a", { className: "text-link", href: mapsUrl(next.map), textContent: "Directions" })
+      )
     )
   );
 
@@ -76,7 +118,11 @@ async function loadEvents({ refresh = false } = {}) {
           el("h4", {}, el("a", { href: e.url, textContent: e.title })),
           el("p", { className: "event-location", textContent: e.location })
         ),
-        eventTime(e)
+        eventTime(e),
+        el("p", { className: "event-links" },
+          el("a", { className: "text-link", href: `/calendar/${e.id}.ics`, textContent: "Add to calendar" }),
+          e.map && el("a", { className: "text-link", href: mapsUrl(e.map), textContent: "Directions" })
+        )
       )
     ));
     list.hidden = false;
@@ -108,7 +154,9 @@ function areaItem(a, distance) {
     el("p", { className: "area-where", textContent: where }),
     a.when && el("p", { className: "area-when", textContent: a.when }),
     el("p", { className: "area-links" },
+      a.postcode && el("a", { href: mapsUrl(`${a.venue}, ${a.postcode}`), textContent: "Directions" }),
       el("a", { href: `mailto:${a.email}`, textContent: `Email ${a.contact}` }),
+      copyButton(a.email),
       el("a", { href: a.facebook, textContent: "Facebook group" })
     )
   );
@@ -128,7 +176,7 @@ function showNearest(lat, lng, label, { scroll = true } = {}) {
   const list = $("nearest-areas");
   list.replaceChildren(...ranked.map(({ a, d }) => areaItem(a, a.approx ? null : d)));
   list.hidden = false;
-  $("finder-status").textContent = `Closest areas to ${label}.`;
+  $("finder-status").textContent = `Closest areas to ${label}. Distances are in a straight line, not by road.`;
   if (scroll) list.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest" });
 }
 
@@ -153,7 +201,9 @@ async function lookupPostcode(raw) {
 // Safe to call again: a refresh redraws the area lists, including any search already shown.
 async function loadAreas({ refresh = false } = {}) {
   try {
-    areas = (await getJSON("data/areas.json")).areas;
+    const data = await getJSON("/data/areas.json");
+    showChecked("areas-checked", "Meeting details", data.checked);
+    areas = data.areas;
   } catch (err) {
     console.error(err);
     if (!refresh) $("finder-status").textContent = "Meetings couldn't be loaded. See the list on mocgb.net.";
@@ -203,6 +253,12 @@ document.addEventListener("visibilitychange", () => {
   loadedAt = Date.now();
   loadEvents({ refresh: true });
   loadAreas({ refresh: true });
+});
+
+document.querySelectorAll(".contacts li").forEach((li) => {
+  const email = li.querySelector('a[href^="mailto:"]')?.getAttribute("href").slice(7);
+  const button = email && copyButton(email);
+  if (button) li.append(button);
 });
 
 setUpFinder();

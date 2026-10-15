@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//MOCGB//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:mocgb-national-show-2027@mocgb.helloshep.com
+DTSTAMP:20261015T202411Z
+DTSTART;VALUE=DATE:20270508
+DTEND;VALUE=DATE:20270510
+SUMMARY:MOCGB National Show 2027
+LOCATION:Venue to be announced
+DESCRIPTION:Details: https://www.mocgb.net/index.php/the-club/events
+URL:https://www.mocgb.net/index.php/the-club/events
+END:VEVENT
+END:VCALENDAR

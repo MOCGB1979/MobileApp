@@ -22,5 +22,5 @@ Then open http://localhost:8765.
 
 Content data, copied from https://www.mocgb.net on 2026-10-15:
 
-- `website/data/events.json` — upcoming events (images resized into `website/images/events/`)
+- `website/data/events.json` — upcoming events (images resized into `website/images/events/`). After editing, run `npm run calendar` to rebuild the Add to calendar files in `website/calendar/`
 - `website/data/areas.json` — area meetings, with coordinates for the nearest-meeting finder (postcodes geocoded via postcodes.io)

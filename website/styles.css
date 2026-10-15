@@ -1,5 +1,25 @@
 /* Mobile-first: base styles are for phones; min-width queries add tablet (48rem) and desktop (64rem) layouts.
    Palette taken from the 1965 Shelby GT350: Wimbledon White with Guardsman Blue stripes. */
+/* Archivo, self-hosted (SIL Open Font License, see fonts/OFL.txt): one variable font covering widths 62–125% and weights 400–800 */
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 400 800;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url("/fonts/archivo-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 400 800;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url("/fonts/archivo-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 /* Light theme (default). Dark values below; a footer switch can force either via <html data-theme>. */
 :root {
   --white: #f1f2ef;        /* Wimbledon White: page background */
@@ -20,7 +40,7 @@
   --band-rule: #3b4a70;
   --light-button-hover: #fff;
   --field: #fff;
-  --placeholder: #8b93a3;
+  --placeholder: #5f687c;
   --thumb: #fff;           /* behind event logos, which are mostly drawn on white */
 
   --font: "Archivo", system-ui, sans-serif;
@@ -50,7 +70,7 @@
     --band: #1b2a4e;
     --light-button-hover: #1f2943;
     --field: #0f1526;
-    --placeholder: #6f7891;
+    --placeholder: #9ba4b8;
     color-scheme: dark;
   }
 }
@@ -68,7 +88,7 @@
   --band: #1b2a4e;
   --light-button-hover: #1f2943;
   --field: #0f1526;
-  --placeholder: #6f7891;
+  --placeholder: #9ba4b8;
   color-scheme: dark;
 }
 
@@ -205,7 +225,7 @@ a { color: inherit; }
   align-items: center;
   justify-content: center;
   min-height: var(--tap);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
   color: var(--blue);
@@ -342,7 +362,7 @@ a { color: inherit; }
 }
 .section--blue .subhead { color: var(--band-muted); }
 
-.small { font-size: 0.9rem; color: var(--chrome); }
+.small { font-size: 1rem; color: var(--chrome); }
 .small a { color: var(--blue); }
 
 .empty {
@@ -546,7 +566,7 @@ a { color: inherit; }
 
 .site-footer {
   padding-block: 1.75rem calc(1.75rem + env(safe-area-inset-bottom));
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--chrome);
 }
 .site-footer .wrap { display: grid; gap: 0.5rem; }
@@ -579,7 +599,7 @@ a { color: inherit; }
   padding: 0.75rem 1rem;
   border-left: 3px solid var(--red);
   background: var(--white);
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 /* ---------- Theme switch ---------- */
@@ -588,12 +608,12 @@ a { color: inherit; }
 .theme-switch button {
   min-height: var(--tap);
   padding: 0 0.85rem;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--chrome);
   border-radius: 3px;
   background: transparent;
   color: var(--ink);
   font: inherit;
-  font-size: 0.9rem;
+  font-size: 1rem;
   cursor: pointer;
 }
 .theme-switch button[aria-pressed="true"] {
@@ -601,4 +621,81 @@ a { color: inherit; }
   box-shadow: inset 0 0 0 1px var(--blue);
   color: var(--blue);
   font-weight: 700;
+}
+
+/* ---------- Skip link ---------- */
+
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: -10rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  border-radius: 3px;
+  background: var(--blue);
+  color: var(--paper);
+  font-weight: 700;
+}
+.skip-link:focus { top: calc(env(safe-area-inset-top) + 0.5rem); }
+main:focus { outline: none; }
+
+/* ---------- Copy, directions and calendar links ---------- */
+
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 0.75rem;
+  border: 1px solid var(--chrome);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--blue);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.copy-button[data-copied] { border-color: var(--blue); }
+
+.contacts li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.contacts li > a { flex: 1; min-width: 0; }
+
+.event-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+.next-event .event-actions .button { margin-top: 0; }
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  color: var(--blue);
+  font-weight: 600;
+}
+.event .event-links { grid-column: 2; display: flex; flex-wrap: wrap; gap: 0 1.25rem; margin: 0; }
+@media (min-width: 48rem) {
+  .event .event-links { grid-column: 2 / -1; }
+}
+
+.checked { margin-top: 0.75rem; }
+
+/* ---------- Text pages (privacy) ---------- */
+
+.prose h2 {
+  margin: 2rem 0 0.5rem;
+  font-size: 1.3rem;
+  color: var(--blue);
+}
+.prose ul { max-width: var(--measure); padding-left: 1.25rem; }
+.prose li + li { margin-top: 0.5rem; }
+.prose a { color: var(--blue); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }

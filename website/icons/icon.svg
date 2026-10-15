@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#1b2a4e"/>
+  <!-- Three tail-light bars, kept inside the maskable safe zone -->
+  <g fill="#d01c25">
+    <rect x="150" y="158" width="58" height="196" rx="5"/>
+    <rect x="227" y="158" width="58" height="196" rx="5"/>
+    <rect x="304" y="158" width="58" height="196" rx="5"/>
+  </g>
+  <g fill="#ff5a60" opacity=".55">
+    <rect x="150" y="158" width="58" height="14" rx="5"/>
+    <rect x="227" y="158" width="58" height="14" rx="5"/>
+    <rect x="304" y="158" width="58" height="14" rx="5"/>
+  </g>
+</svg>

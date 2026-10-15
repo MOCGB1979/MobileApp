@@ -6,6 +6,12 @@
   <meta name="theme-color" content="#fafaf8">
   <title>Mustang Owners Club of Great Britain</title>
   <meta name="description" content="Find the next MOCGB event and your nearest area meeting, contact the club, and get to the forum, FAQs and social pages.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="MOCGB">
+  <meta name="mobile-web-app-capable" content="yes">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
@@ -36,6 +42,10 @@
           Mustang Owners Club of Great Britain
         </h1>
         <p>Run by volunteers for more than 2,500 members. Owners and fans of every Mustang, from 1964 to today, are welcome.</p>
+        <div class="install" id="install" hidden>
+          <button class="button button--quiet" id="install-button" type="button" hidden>Install the app</button>
+          <p class="install-hint" id="install-hint" hidden>Add MOCGB to your home screen: tap the Share button, then <strong>Add to Home Screen</strong>.</p>
+        </div>
       </div>
     </section>
 
@@ -129,5 +139,6 @@
   </footer>
 
   <script src="app.js" defer></script>
+  <script src="pwa.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,3 @@
+# The service worker must never be cached by the browser, or phones miss new deploys.
+/sw.js
+  Cache-Control: no-cache

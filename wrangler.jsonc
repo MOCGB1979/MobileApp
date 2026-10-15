@@ -1,0 +1,11 @@
+// Cloudflare Workers config. Static site for now; the members' backend will add a "main" script here later.
+// Production builds come from the `prod` branch; `dev` gets a preview at https://dev-mocgb.ms77.workers.dev
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mocgb",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./website"
+  },
+  "preview_urls": true
+}

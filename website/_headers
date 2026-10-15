@@ -2,6 +2,7 @@
 /sw.js
   Cache-Control: no-cache
 
-# Custom-domain Previews don't get noindex automatically (workers.dev ones do), so keep dev out of search engines
-https://dev.mocgb.helloshep.com/*
+# Proof of concept: keep every address (production and Previews) out of search engines.
+# Remove this rule when the site goes public.
+/*
   X-Robots-Tag: noindex

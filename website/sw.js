@@ -1,6 +1,7 @@
 // Service worker: makes the site installable and keeps the last-seen version available offline.
 // Pages, styles, scripts and data are network-first, so members always get the latest when online.
-const CACHE = "mocgb-v2";
+// Images show the saved copy straight away and fetch the latest in the background for next time.
+const CACHE = "mocgb-v3";
 const CORE = [
   "/",
   "/styles.css",
@@ -31,11 +32,11 @@ self.addEventListener("fetch", (event) => {
   // Leave other sites (postcode lookup, fonts, mocgb.net) to the browser
   if (request.method !== "GET" || url.origin !== self.location.origin) return;
 
-  // Images rarely change: serve from cache, fetch once
+  // Images: stale-while-revalidate
   if (request.destination === "image") {
-    event.respondWith(
-      caches.match(request).then((hit) => hit || fetch(request).then((res) => store(request, res)))
-    );
+    const fresh = fetch(request).then((res) => store(request, res));
+    event.waitUntil(fresh.catch(() => {}));
+    event.respondWith(caches.match(request).then((hit) => hit || fresh));
     return;
   }
 

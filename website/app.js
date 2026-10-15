@@ -2,7 +2,6 @@
 // Data comes from data/*.json for now; the backend can serve the same shapes later.
 
 const $ = (id) => document.getElementById(id);
-const today = new Date().toISOString().slice(0, 10);
 
 function el(tag, props = {}, ...children) {
   const node = Object.assign(document.createElement(tag), props);
@@ -34,8 +33,11 @@ function eventTime(e) {
   return el("time", { dateTime: e.start, textContent: dateRange(e.start, e.end) });
 }
 
-async function loadEvents() {
+// Safe to call again: it rebuilds the section, and a failed refresh leaves what's already shown.
+async function loadEvents({ refresh = false } = {}) {
   const box = $("next-event");
+  const list = $("more-events");
+  const today = new Date().toISOString().slice(0, 10);
   let events = [];
   try {
     events = (await getJSON("data/events.json")).events
@@ -43,17 +45,19 @@ async function loadEvents() {
       .sort((a, b) => a.start.localeCompare(b.start));
   } catch (err) {
     console.error(err);
-    box.append(el("p", { className: "empty", textContent: "Events couldn't be loaded. See the full list on mocgb.net." }));
+    if (!refresh) box.replaceChildren(el("p", { className: "empty", textContent: "Events couldn't be loaded. See the full list on mocgb.net." }));
     return;
   }
 
+  list.hidden = true;
+  $("more-events-title").hidden = true;
   if (!events.length) {
-    box.append(el("p", { className: "empty", textContent: "No events are listed right now. Check mocgb.net for new dates." }));
+    box.replaceChildren(el("p", { className: "empty", textContent: "No events are listed right now. Check mocgb.net for new dates." }));
     return;
   }
 
   const [next, ...rest] = events;
-  box.append(
+  box.replaceChildren(
     el("img", { src: next.logo, alt: "", loading: "eager", className: "next-event-img" }),
     el("div", { className: "next-event-body" },
       eventTime(next),
@@ -65,17 +69,16 @@ async function loadEvents() {
   );
 
   if (rest.length) {
-    const list = $("more-events");
-    for (const e of rest) {
-      list.append(el("li", { className: "event" },
+    list.replaceChildren(...rest.map((e) =>
+      el("li", { className: "event" },
         el("img", { src: e.logo, alt: "", width: 64, height: 64, loading: "lazy" }),
         el("div", {},
           el("h4", {}, el("a", { href: e.url, textContent: e.title })),
           el("p", { className: "event-location", textContent: e.location })
         ),
         eventTime(e)
-      ));
-    }
+      )
+    ));
     list.hidden = false;
     $("more-events-title").hidden = false;
   }
@@ -84,6 +87,7 @@ async function loadEvents() {
 /* ---------- Area meetings ---------- */
 
 let areas = [];
+let lastSearch = null;   // { lat, lng, label } of the most recent nearest-meeting search
 
 function miles(lat1, lng1, lat2, lng2) {
   const r = (d) => (d * Math.PI) / 180;
@@ -110,7 +114,12 @@ function areaItem(a, distance) {
   );
 }
 
-function showNearest(lat, lng, label) {
+function showNearest(lat, lng, label, { scroll = true } = {}) {
+  lastSearch = { lat, lng, label };
+  if (!areas.length) {
+    $("finder-status").textContent = "Meetings aren't loaded yet. Try again in a moment, or see the list on mocgb.net.";
+    return;
+  }
   const ranked = areas
     .filter((a) => a.lat != null)
     .map((a) => ({ a, d: miles(lat, lng, a.lat, a.lng) }))
@@ -120,7 +129,7 @@ function showNearest(lat, lng, label) {
   list.replaceChildren(...ranked.map(({ a, d }) => areaItem(a, a.approx ? null : d)));
   list.hidden = false;
   $("finder-status").textContent = `Closest areas to ${label}.`;
-  list.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest" });
+  if (scroll) list.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest" });
 }
 
 async function lookupPostcode(raw) {
@@ -141,16 +150,20 @@ async function lookupPostcode(raw) {
   throw new Error(`We couldn't find ${pc}. Check it and try again.`);
 }
 
-async function loadAreas() {
+// Safe to call again: a refresh redraws the area lists, including any search already shown.
+async function loadAreas({ refresh = false } = {}) {
   try {
     areas = (await getJSON("data/areas.json")).areas;
   } catch (err) {
     console.error(err);
-    $("finder-status").textContent = "Meetings couldn't be loaded. See the list on mocgb.net.";
+    if (!refresh) $("finder-status").textContent = "Meetings couldn't be loaded. See the list on mocgb.net.";
     return;
   }
   $("all-areas").replaceChildren(...areas.map((a) => areaItem(a)));
+  if (refresh && lastSearch) showNearest(lastSearch.lat, lastSearch.lng, lastSearch.label, { scroll: false });
+}
 
+function setUpFinder() {
   const status = $("finder-status");
   const locBtn = $("use-location");
   if (!("geolocation" in navigator)) locBtn.hidden = true;
@@ -178,5 +191,20 @@ async function loadAreas() {
   });
 }
 
+/* ---------- Start, and refresh when reopened ---------- */
+
+// An installed app can sit suspended in the background for days. When it comes back
+// after a while, quietly fetch the latest events and meetings without reloading the page.
+const REFRESH_AFTER = 30 * 60 * 1000;
+let loadedAt = Date.now();
+
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState !== "visible" || Date.now() - loadedAt < REFRESH_AFTER) return;
+  loadedAt = Date.now();
+  loadEvents({ refresh: true });
+  loadAreas({ refresh: true });
+});
+
+setUpFinder();
 loadEvents();
 loadAreas();

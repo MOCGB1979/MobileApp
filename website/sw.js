@@ -1,7 +1,7 @@
 // Service worker: makes the site installable and keeps the last-seen version available offline.
 // Pages, styles, scripts and data are network-first, so members always get the latest when online.
 // Images and fonts show the saved copy straight away and fetch the latest in the background for next time.
-const CACHE = "mocgb-v5";
+const CACHE = "mocgb-v6";
 const CORE = [
   "/",
   "/styles.css",

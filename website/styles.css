@@ -289,6 +289,18 @@ a { color: inherit; }
   font-size: clamp(2.6rem, 12.5vw, 7.5rem);
   color: var(--blue);
 }
+.hero-title {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+}
+.hero-logo {
+  flex: none;
+  width: clamp(5.5rem, 26vw, 15rem);
+  height: auto;
+  border-radius: 22%;
+  box-shadow: 0 0.4rem 1.2rem rgb(0 0 0 / 0.18);
+}
 .hero h1 .lights { display: flex; font-size: 0.5em; height: 0.9em; margin-bottom: 0.3em; }
 .hero p {
   max-width: var(--measure);
